@@ -1,0 +1,68 @@
+version: "2"
+services:
+
+  database:
+    container_name: database
+    image: postgres:9.3-alpine
+    environment:
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=postgres
+    ports:
+    - "5432:5432"
+    volumes:
+    - ./create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+    networks:
+      static-network:
+        ipv4_address: 172.20.128.4
+
+  #  sonarqube:
+  #    container_name: sonarqube
+  #    image: sonarqube:alpine
+  #    ports:
+  #    - "9000:9000"
+  #    networks:
+  #      static-network:
+  #        ipv4_address: 172.20.128.3
+
+  #  concurencyapi:
+  #    container_name: concurencyapi
+  #    image: concurency/api
+  #    restart: always
+  #    build:
+  #      context: ./
+  #      dockerfile: Dockerfile
+  #    depends_on:
+  #    - database
+  ##    - sonarqube
+  #    ports:
+  #    - "20030:20030"
+  #    - "8080:9009"
+  #    networks:
+  #      static-network:
+  #        ipv4_address: 172.20.128.2
+
+  concurencyapi:
+    container_name: concurencyapi
+    image: maven:3.5.4-jdk-8-alpine
+    restart: always
+    #    build: ./
+    working_dir: /home
+    volumes:
+    - ./:/home
+    - ~/.m2:/root/.m2
+    ports:
+    - "20030:20030"
+    command: ./mvnw clean spring-boot:run
+    depends_on:
+    - database
+    networks:
+      static-network:
+        ipv4_address: 172.20.128.2
+
+networks:
+  static-network:
+    ipam:
+      config:
+      - subnet: 172.20.0.0/16
+        #docker-compose v3+ do not use ip_range
+        ip_range: 172.28.5.0/24
