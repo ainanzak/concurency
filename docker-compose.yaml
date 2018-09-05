@@ -15,14 +15,22 @@ services:
       static-network:
         ipv4_address: 172.20.128.4
 
-  #  sonarqube:
-  #    container_name: sonarqube
-  #    image: sonarqube:alpine
-  #    ports:
-  #    - "9000:9000"
-  #    networks:
-  #      static-network:
-  #        ipv4_address: 172.20.128.3
+  sonarqube:
+    container_name: sonarqube
+    image: sonarqube:alpine
+    links:
+    - database
+    depends_on:
+    - database
+    environment:
+    - DB_USER=sonar
+    - DB_PASS=xaexohquaetiesoo
+    - DB_NAME=sonar
+    ports:
+    - "9000:9000"
+    networks:
+      static-network:
+        ipv4_address: 172.20.128.3
 
   #  concurencyapi:
   #    container_name: concurencyapi
@@ -52,9 +60,13 @@ services:
     - ~/.m2:/root/.m2
     ports:
     - "20030:20030"
-    command: ./mvnw clean spring-boot:run
+    command: bash -c "./mvnw clean spring-boot:run"
+    links:
+    - database
+    - sonarqube
     depends_on:
     - database
+    - sonarqube
     networks:
       static-network:
         ipv4_address: 172.20.128.2

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.UUID;
 
 @RestController
-@Api(value = ConstantsRest.INQUIRY_DATA, description = "Inquiry Data Controller")
+@Api(value = ConstantsRest.INQUIRY_DATA)
 public class InquiryDataController {
     private InquiryDataService inquiryDataService;
 

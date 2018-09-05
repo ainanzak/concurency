@@ -61,13 +61,13 @@ public class InputExchangeServicesImpl implements InputService {
             inputRateResponse.setStatus("Success");
 
         } catch (ArithmeticException arimatex) {
-            logUtils.error("error inputRateExchange rate minus", arimatex);
+            logUtils.error("error InputExchangeServicesImpl rate minus", arimatex);
             return CustomResponseHelper.create(HttpStatus.BAD_REQUEST);
         } catch (NullPointerException nullex) {
-            logUtils.error("error inputRateExchange null", nullex);
+            logUtils.error("error InputExchangeServicesImpl null", nullex);
             return CustomResponseHelper.create(HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-            logUtils.error("error inputRateExchange exception", e);
+            logUtils.error("error InputExchangeServicesImpl exception", e);
             return CustomResponseHelper.create(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -75,7 +75,7 @@ public class InputExchangeServicesImpl implements InputService {
     }
 
     @Override
-    public void validate(String request) throws NullPointerException {
+    public void validate(String request) {
         InputDto inputDto = gson.fromJson(request, InputDto.class);
         if (inputDto.getFrom() == null || inputDto.getFrom().equals("")) {
             throw new NullPointerException("from null");

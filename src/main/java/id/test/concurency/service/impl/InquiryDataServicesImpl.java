@@ -102,7 +102,7 @@ public class InquiryDataServicesImpl implements InquiryDataService {
     }
 
     @Override
-    public void validate(String date) throws ParseException, NullPointerException {
+    public void validate(String date) throws ParseException {
         if (date == null || date.equals("")) {
             throw new NullPointerException("date null");
         }

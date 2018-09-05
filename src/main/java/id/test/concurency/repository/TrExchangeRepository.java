@@ -9,5 +9,7 @@ import java.util.List;
 public interface TrExchangeRepository extends JpaRepository<TrExchangeEntity, Long> {
     TrExchangeEntity findByIdTipeExchangeAndDate(Long idTipeExchange, Date date);
 
+    List<TrExchangeEntity> findByIdTipeExchange(Long idTipeExchange);
+
     List<TrExchangeEntity> findByIdTipeExchangeAndDateBetween(Long idTipeExchange, Date datestart, Date dateend);
 }

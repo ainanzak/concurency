@@ -2,6 +2,10 @@
 -- CREATE USER concurency WITH PASSWORD 'postgres';
 -- GRANT ALL PRIVILEGES ON DATABASE "concurency" to concurency;
 
+CREATE DATABASE sonar;
+CREATE USER sonar WITH PASSWORD 'xaexohquaetiesoo';
+GRANT ALL PRIVILEGES ON DATABASE "sonar" to sonar;
+
 CREATE SEQUENCE "public"."tr_exchange_seq"
  INCREMENT 1
  MINVALUE 1

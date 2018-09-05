@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.UUID;
 
 @RestController
-@Api(value = "/detail", description = "Get data detail Controller")
+@Api(value = "/detail")
 public class DetailRateController {
 
     @PostMapping("/detail")

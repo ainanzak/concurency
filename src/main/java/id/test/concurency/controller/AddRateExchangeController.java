@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.UUID;
 
 @RestController
-@Api(value = ConstantsRest.ADD_RATE, description = "Input Rate Controller")
+@Api(value = ConstantsRest.ADD_RATE)
 public class AddRateExchangeController {
     private InputService inputService;
     private Gson gson;

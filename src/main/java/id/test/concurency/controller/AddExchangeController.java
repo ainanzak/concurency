@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.UUID;
 
 @RestController
-@Api(value = ConstantsRest.ADD_EXCHANGE, description = "Input Exchange Controller")
+@Api(value = ConstantsRest.ADD_EXCHANGE)
 public class AddExchangeController {
     private InputService inputService;
     private Gson gson;

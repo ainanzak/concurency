@@ -77,17 +77,17 @@ public class InputRateServicesImpl implements InputService {
 
             inputRateResponse.setStatus("Success");
 
-        } catch (ParseException par_ex) {
-            logUtils.error("error inputRateExchange date cannot parse", par_ex);
+        } catch (ParseException parex) {
+            logUtils.error("error InputRateServicesImpl date cannot parse", parex);
             return CustomResponseHelper.create(HttpStatus.BAD_REQUEST);
         } catch (ArithmeticException arimatex) {
-            logUtils.error("error inputRateExchange rate minus", arimatex);
+            logUtils.error("error InputRateServicesImpl rate minus", arimatex);
             return CustomResponseHelper.create(HttpStatus.BAD_REQUEST);
         } catch (NullPointerException nullex) {
-            logUtils.error("error inputRateExchange null", nullex);
+            logUtils.error("error InputRateServicesImpl null", nullex);
             return CustomResponseHelper.create(HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-            logUtils.error("error inputRateExchange exception", e);
+            logUtils.error("error InputRateServicesImpl exception", e);
             return CustomResponseHelper.create(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -95,7 +95,7 @@ public class InputRateServicesImpl implements InputService {
     }
 
     @Override
-    public void validate(String request) throws ParseException, NullPointerException {
+    public void validate(String request) throws ParseException {
         InputRateDto inputDto = gson.fromJson(request, InputRateDto.class);
         if (inputDto.getDate() == null || inputDto.getDate().equals("")) {
             throw new NullPointerException("date null");

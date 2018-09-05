@@ -104,7 +104,17 @@
 
     <build>
         <finalName>Concurency</finalName>
+
+
         <plugins>
+            <!-- plugins for sonarqube -->
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.2</version>
+            </plugin>
+            <!-- plugin for code coverage -->
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
