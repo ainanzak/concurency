@@ -57,12 +57,15 @@ INSERT INTO "public"."ms_tipe_exchange" ("from", "to", "date") VALUES ('USD', 'G
 INSERT INTO "public"."ms_tipe_exchange" ("from", "to", "date") VALUES ('USD', 'IDR', now());
 INSERT INTO "public"."ms_tipe_exchange" ("from", "to", "date") VALUES ('JPY', 'IDR', now());
 
-INSERT INTO "public"."tr_exchange" ("id_tipe_exchange", "rate", "date", "createat") VALUES ('1', '1.417', '2018-08-07', now());
-INSERT INTO "public"."tr_exchange" ("id_tipe_exchange", "rate", "date", "createat") VALUES ('1', '1.295', '2018-08-08', now());
-INSERT INTO "public"."tr_exchange" ("id_tipe_exchange", "rate", "date", "createat") VALUES ('1', '1.199', '2018-08-09', now());
-INSERT INTO "public"."tr_exchange" ("id_tipe_exchange", "rate", "date", "createat") VALUES ('1', '1.288', '2018-08-10', now());
-INSERT INTO "public"."tr_exchange" ("id_tipe_exchange", "rate", "date", "createat") VALUES ('1', '1.317', '2018-08-11', now());
-INSERT INTO "public"."tr_exchange" ("id_tipe_exchange", "rate", "date", "createat") VALUES ('1', '1.105', '2018-08-12', now());
-INSERT INTO "public"."tr_exchange" ("id_tipe_exchange", "rate", "date", "createat") VALUES ('1', '1.265', '2018-08-13', now());
-INSERT INTO "public"."tr_exchange" ("id_tipe_exchange", "rate", "date", "createat") VALUES ('2', '0.7069', '2018-08-13', now());
-INSERT INTO "public"."tr_exchange" ("id_tipe_exchange", "rate", "date", "createat") VALUES ('3', '14347', '2018-08-13', now());
+INSERT INTO "public"."tr_exchange" ("id_tipe_exchange", "rate", "date", "createat") VALUES ('1', '1.417', '2018-08-27', now());
+INSERT INTO "public"."tr_exchange" ("id_tipe_exchange", "rate", "date", "createat") VALUES ('1', '1.295', '2018-08-28', now());
+INSERT INTO "public"."tr_exchange" ("id_tipe_exchange", "rate", "date", "createat") VALUES ('1', '1.199', '2018-08-29', now());
+INSERT INTO "public"."tr_exchange" ("id_tipe_exchange", "rate", "date", "createat") VALUES ('1', '1.288', '2018-08-30', now());
+INSERT INTO "public"."tr_exchange" ("id_tipe_exchange", "rate", "date", "createat") VALUES ('1', '1.317', '2018-08-31', now());
+INSERT INTO "public"."tr_exchange" ("id_tipe_exchange", "rate", "date", "createat") VALUES ('1', '1.105', '2018-09-01', now());
+INSERT INTO "public"."tr_exchange" ("id_tipe_exchange", "rate", "date", "createat") VALUES ('1', '1.265', '2018-09-02', now());
+INSERT INTO "public"."tr_exchange" ("id_tipe_exchange", "rate", "date", "createat") VALUES ('1', '1.320', '2018-09-03', now());
+INSERT INTO "public"."tr_exchange" ("id_tipe_exchange", "rate", "date", "createat") VALUES ('1', '1.245', '2018-09-04', now());
+INSERT INTO "public"."tr_exchange" ("id_tipe_exchange", "rate", "date", "createat") VALUES ('1', '1.110', '2018-09-05', now());
+INSERT INTO "public"."tr_exchange" ("id_tipe_exchange", "rate", "date", "createat") VALUES ('2', '0.7069', '2018-09-04', now());
+INSERT INTO "public"."tr_exchange" ("id_tipe_exchange", "rate", "date", "createat") VALUES ('3', '14347', '2018-09-04', now());

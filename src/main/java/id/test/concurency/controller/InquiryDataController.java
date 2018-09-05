@@ -1,11 +1,13 @@
 package id.test.concurency.controller;
 
+import id.test.concurency.common.Constants;
 import id.test.concurency.common.ConstantsRest;
 import id.test.concurency.dto.response.InquiryDataResponse;
 import id.test.concurency.helper.LogUtils;
 import id.test.concurency.service.InquiryDataService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +22,7 @@ public class InquiryDataController {
     private InquiryDataService inquiryDataService;
 
     @Autowired
-    public InquiryDataController(InquiryDataService inquiryDataService) {
+    public InquiryDataController(@Qualifier(Constants.SERVICE_INQUIRY) InquiryDataService inquiryDataService) {
         this.inquiryDataService = inquiryDataService;
     }
 

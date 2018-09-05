@@ -1,8 +1,8 @@
 package id.test.concurency.service.impl;
 
 import id.test.concurency.common.Constants;
-import id.test.concurency.dto.response.InquiryDataResponse;
 import id.test.concurency.dto.response.InquiryDetail;
+import id.test.concurency.dto.response.InquiryDetailResponse;
 import id.test.concurency.entity.MsTipeExchangeEntity;
 import id.test.concurency.entity.TrExchangeEntity;
 import id.test.concurency.helper.CustomResponseHelper;
@@ -22,7 +22,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-@Service
+@Service(Constants.SERVICE_INQUIRY)
 public class InquiryDataServicesImpl implements InquiryDataService {
 
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -37,17 +37,17 @@ public class InquiryDataServicesImpl implements InquiryDataService {
     }
 
     @Override
-    public ResponseEntity<Object> inquiryDataExchange(String Sdate, LogUtils logUtils) {
-        InquiryDataResponse inquiryDataResponse;
+    public ResponseEntity<Object> inquiryDataExchange(String sDate, LogUtils logUtils) {
+        InquiryDetailResponse inquiryDataResponse;
         try {
             // validate date input
-            validate(Sdate);
+            validate(sDate);
 
-            Date dEnd = sdf.parse(Sdate);
+            Date dEnd = sdf.parse(sDate);
             Date dStart = getWeekAgo(dEnd);
 
             // Initiate response
-            inquiryDataResponse = new InquiryDataResponse();
+            inquiryDataResponse = new InquiryDetailResponse();
             List<InquiryDetail> inquiryDetailList = new ArrayList<>();
 
             // get All Tipe Exchange
@@ -72,23 +72,18 @@ public class InquiryDataServicesImpl implements InquiryDataService {
                     logUtils.info(String.format("average > %s", average));
                 }
 
-                inqInquiryDetail.setFrom(msTipeExchangeEntity.getFrom());
-                inqInquiryDetail.setTo(msTipeExchangeEntity.getTo());
-                inqInquiryDetail.setRate(Constants.DATA_INSUFFICIENT);
-                inqInquiryDetail.setAverage(average);
 
-                if (trExchangeEntity != null) {
-                    inqInquiryDetail.setRate(trExchangeEntity.getRate() + "");
-                }
+                inqInquiryDetail.setDate(sdf.format(trExchangeEntity.getDate()));
+                //inqInquiryDetail.setRate(Constants.DATA_INSUFFICIENT);
+                inqInquiryDetail.setRate(trExchangeEntity.getRate() + "");
 
                 inquiryDetailList.add(inqInquiryDetail);
             }
 
             inquiryDataResponse.setDetailinq(inquiryDetailList);
-            inquiryDataResponse.setDate(Sdate);
 
-        } catch (ParseException par_ex) {
-            logUtils.error("error inputRateExchange date cannot parse", par_ex);
+        } catch (ParseException parx) {
+            logUtils.error("error inputRateExchange date cannot parse", parx);
             return CustomResponseHelper.create(HttpStatus.BAD_REQUEST);
         } catch (NullPointerException nullex) {
             logUtils.error("error inputRateExchange null", nullex);
@@ -112,7 +107,7 @@ public class InquiryDataServicesImpl implements InquiryDataService {
     private Date getWeekAgo(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        calendar.add(Calendar.DATE, -7);
+        calendar.add(Calendar.DATE, -6);
         return calendar.getTime();
     }
 }

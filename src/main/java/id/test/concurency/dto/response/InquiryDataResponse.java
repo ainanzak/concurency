@@ -7,6 +7,6 @@ import java.util.List;
 @Data
 public class InquiryDataResponse {
     private String date;
-    private List<InquiryDetail> detailinq;
+    private List<InquiryDetailExtend> detailinq;
 }
 

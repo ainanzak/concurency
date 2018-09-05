@@ -1,10 +1,15 @@
 package id.test.concurency.controller;
 
 import com.google.gson.Gson;
+import id.test.concurency.common.Constants;
+import id.test.concurency.common.ConstantsRest;
 import id.test.concurency.dto.request.InputDto;
 import id.test.concurency.dto.response.InputRateResponse;
 import id.test.concurency.helper.LogUtils;
+import id.test.concurency.service.InquiryDataService;
 import io.swagger.annotations.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,10 +19,20 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.UUID;
 
 @RestController
-@Api(value = "/detail")
+@Api(value = ConstantsRest.TREND_EXCHANGE)
 public class DetailRateController {
 
-    @PostMapping("/detail")
+    private InquiryDataService inquiryDataService;
+    private Gson gson;
+
+    @Autowired
+    public DetailRateController(@Qualifier(Constants.SERVICE_INQUIRY_DETAIL) InquiryDataService inquiryDataService, Gson gson) {
+        this.inquiryDataService = inquiryDataService;
+        this.gson = gson;
+    }
+
+
+    @PostMapping(ConstantsRest.TREND_EXCHANGE)
     @ApiOperation(value = "Detail controller",
             notes = "Get detail data until 7 days ago wich spesific exchange",
             response = InputRateResponse.class)
@@ -29,9 +44,8 @@ public class DetailRateController {
 
         String uuid = UUID.randomUUID().toString().replace("-", "");
         logUtils.setId(uuid);
-        logUtils.info(new Gson().toJson(inputDto));
+        logUtils.info(gson.toJson(inputDto));
 
-//        return inputService.inputRateExchange(inputDto, logUtils);
-        return null;
+        return inquiryDataService.inquiryDataExchange(gson.toJson(inputDto), logUtils);
     }
 }
