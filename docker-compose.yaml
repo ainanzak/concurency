@@ -60,7 +60,7 @@ services:
     - ~/.m2:/root/.m2
     ports:
     - "20030:20030"
-    command: bash -c "./mvnw clean spring-boot:run"
+    command: bash -c "./mvnw test && ./mvnw clean spring-boot:run"
     links:
     - database
     - sonarqube

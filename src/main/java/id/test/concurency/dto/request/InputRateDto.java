@@ -9,6 +9,16 @@ public class InputRateDto extends InputDto {
     private String date;
     private Double rate;
 
+    public InputRateDto() {
+    }
+
+    public InputRateDto(String date, Double rate, String from, String to) {
+        this.setFrom(from);
+        this.setTo(to);
+        this.date = date;
+        this.rate = rate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
